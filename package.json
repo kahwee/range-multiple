@@ -2,8 +2,11 @@
   "name": "range-multiple",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "range-multiple.js",
   "scripts": {
+    "browser": "browserify range-multiple.js -o dist/range-multiple.js",
+    "uglify": "uglifyjs -c -m -o dist/range-multiple.min.js dist/range-multiple.js",
+    "build": "npm run browser && npm run uglify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +18,14 @@
   "bugs": {
     "url": "https://github.com/kahwee/range-multiple/issues"
   },
-  "homepage": "https://github.com/kahwee/range-multiple#readme"
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "homepage": "https://github.com/kahwee/range-multiple#readme",
+  "devDependencies": {
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.3"
+  }
 }

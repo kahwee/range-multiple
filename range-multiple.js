@@ -1,6 +1,11 @@
-window.RangeMultiple = class RangeMultiple {
-  constructor(el) {
+window.rangeMultiple = function(el, opts = {}) {
+  return new RangeMultiple(el, opts);
+}
+
+class RangeMultiple {
+  constructor(el, {min = 0, max = 100, step = 1}) {
     this.el = el;
+    console.log(el);
     var div = document.createElement('div');
     div.className = 'rmultiple';
     var handle = new Handle(div);

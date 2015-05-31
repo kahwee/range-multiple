@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
-    </style>
+    <link href="dist/range-multiple.css" media="all" rel="stylesheet" />
   </head>
 
   <body>
@@ -14,7 +13,7 @@
     <script>
       var rangeMultiples = document.querySelectorAll('[data-toggle=range-multiple]');
       [].forEach.call(rangeMultiples, function (item, i, arr) {
-        new RangeMultiple(item);
+        new rangeMultiple(item);
       });
     </script>
   </body>

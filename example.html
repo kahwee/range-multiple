@@ -11,10 +11,10 @@
 		</form>
 		<script src="dist/range-multiple.js"></script>
 		<script>
-			document.querySelectorAll('[data-toggle=range-multiple]').forEach(function(el) {
-				new RangeMultiple(el);
+			var rangeMultiples = document.querySelectorAll('[data-toggle=range-multiple]');
+			[].forEach.call(rangeMultiples, function (item, i, arr) {
+				new RangeMultiple(item);
 			});
-
 		</script>
 	</body>
 </html>

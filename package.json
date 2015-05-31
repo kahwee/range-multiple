@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/kahwee/range-multiple#readme",
   "devDependencies": {
+    "babel-eslint": "^3.1.9",
     "babelify": "^6.1.2",
     "browserify": "^10.2.3"
   }

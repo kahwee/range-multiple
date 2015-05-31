@@ -16,7 +16,7 @@ window.RangeMultiple = class RangeMultiple {
 class Handle {
   constructor(el) {
     var div = document.createElement('div');
-    div.className = 'rhandle';
+    div.className = 'rmultiple-handle';
     el.appendChild(div);
   }
 }
@@ -24,7 +24,7 @@ class Handle {
 class Track {
   constructor(el) {
     var div = document.createElement('div');
-    div.className = 'rtrack';
+    div.className = 'rmultiple-track';
     el.appendChild(div);
   }
 }

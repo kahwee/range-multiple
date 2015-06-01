@@ -1,7 +1,47 @@
 .rmultiple {
-	background: blue;
-	height: 18px;
-	button {
-		background: yellow;
+	position: relative;
+	overflow: hidden;
+	width: 200px;
+	height: 34px;
+
+	input {
+		position: absolute;
+		overflow: hidden;
+		left: 0;
+		top: 0;
+		width: 200px;
+		outline: none;
+		height: 18px;
+		pointer-events: none;
 	}
+
+	input::-webkit-slider-thumb {
+		position: relative;
+		z-index: 1;
+		outline: 0;
+		pointer-events: all;
+	}
+
+	input::-moz-range-thumb {
+		position: relative;
+		z-index: 10;
+		-moz-appearance: none;
+		background: linear-gradient(to bottom, #ededed 0%, #dedede 100%);
+		width: 11px;
+		pointer-events: all;
+	}
+
+	input::-moz-range-track {
+		position: relative;
+		z-index: -1;
+		background-color: rgba(0, 0, 0, .15);
+		border: 0;
+	}
+
+	input:last-of-type::-moz-range-track {
+		-moz-appearance: none;
+		background: none transparent;
+		border: 0;
+	}
+
 }

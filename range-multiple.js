@@ -5,12 +5,23 @@ window.rangeMultiple = function(el, opts = {}) {
   return new RangeMultiple(el, opts);
 }
 
+function createRange(el) {
+  el.setAttribute('type', 'range');
+  return el;
+}
+
 class RangeMultiple {
   constructor(el, {min = 0, max = 100, step = 1}) {
     this.el = el;
     this.opts = {min, max, step};
     console.log(el, this.opts);
     var div = document.createElement('div');
+    this.range1 = createRange(document.createElement('input'));
+    this.range2 = createRange(document.createElement('input'));
+    div.appendChild(this.range1);
+    div.appendChild(this.range2);
+    createRange(this.range1);
+    createRange(this.range2);
     div.className = 'rmultiple';
     var handle = new Handle(div);
     var track = new Track(div);

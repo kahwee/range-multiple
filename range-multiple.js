@@ -5,8 +5,19 @@ window.rangeMultiple = function(el, opts = {}) {
   return new RangeMultiple(el, opts);
 }
 
-function createRange(el) {
+const COMPONENT_NAME = 'rmultiple';
+
+function normalizeShadowRange(el, value) {
+  value = Number.parseFloat(value);
   el.setAttribute('type', 'range');
+  if (Number.isNaN(value)) {
+    el.removeAttribute(value);
+  } else {
+    el.setAttribute('value', value);
+    el.value = value;
+  }
+  el.removeAttribute('multiple');
+  el.removeAttribute('data-toggle');
   return el;
 }
 
@@ -14,37 +25,39 @@ class RangeMultiple {
   constructor(el, {min = 0, max = 100, step = 1}) {
     this.el = el;
     this.opts = {min, max, step};
-    console.log(el, this.opts);
-    var div = document.createElement('div');
-    this.range1 = createRange(document.createElement('input'));
-    this.range2 = createRange(document.createElement('input'));
-    div.appendChild(this.range1);
-    div.appendChild(this.range2);
-    createRange(this.range1);
-    createRange(this.range2);
-    div.className = 'rmultiple';
-    var handle = new Handle(div);
-    var track = new Track(div);
-    el.parentNode.insertBefore(div, el.nextSibling);
+    this.shadowEl = document.createElement('div');
+    this.shadowEl.className = COMPONENT_NAME;
+    this.values = el.value.split(',');
+    this.range1 = normalizeShadowRange(el.cloneNode(), this.values[0]);
+    this.range2 = normalizeShadowRange(el.cloneNode(), this.values[1]);
+    this.range1.className = `${COMPONENT_NAME}-range1`;
+    this.range2.className = `${COMPONENT_NAME}-range2`;
+    this.shadowEl.appendChild(this.range1);
+    this.shadowEl.appendChild(this.range2);
+    this.range1.addEventListener('input', () => this.handleInputRange1());
+    this.range2.addEventListener('input', () => this.handleInputRange2());
+    el.parentNode.insertBefore(this.shadowEl, el.nextSibling);
+  }
+
+  handleInputRange1() {
+    if (Number.parseFloat(this.range1.value) > Number.parseFloat(this.range2.value)) {
+      this.range2.value = this.range1.value;
+    }
+    this.updateOriginal();
+  }
+
+  handleInputRange2() {
+    if (Number.parseFloat(this.range2.value) < Number.parseFloat(this.range1.value)) {
+      this.range1.value = this.range2.value;
+    }
+    this.updateOriginal();
+  }
+
+  updateOriginal() {
+    this.el.value = this.range1.value + ',' + this.range2.value;
   }
 
   render() {
 
-  }
-}
-
-class Handle {
-  constructor(el) {
-    var div = document.createElement('div');
-    div.className = 'rmultiple-handle';
-    el.appendChild(div);
-  }
-}
-
-class Track {
-  constructor(el) {
-    var div = document.createElement('div');
-    div.className = 'rmultiple-track';
-    el.appendChild(div);
   }
 }

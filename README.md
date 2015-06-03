@@ -10,8 +10,8 @@ npm install
 
 ```
 npm run build
-npm run less
 ```
+
 # Testing
 
 None at the moment.

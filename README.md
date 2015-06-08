@@ -14,4 +14,6 @@ npm run build
 
 # Testing
 
-None at the moment.
+```
+npm run test
+```

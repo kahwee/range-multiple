@@ -10,7 +10,7 @@
     "watchify": "watchify range-multiple.js -o dist/range-multiple.js",
     "less": "lessc range-multiple.less dist/range-multiple.css",
     "build": "npm run js && npm run less",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha *.spec --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,10 @@
     "babel-eslint": "^3.1.9",
     "babelify": "^6.1.2",
     "browserify": "^10.2.3",
+    "jsdom": "^5.4.3",
     "less": "^2.5.1",
+    "mocha": "^2.2.5",
+    "mocha-jsdom": "^0.4.0",
     "uglify-js": "^2.4.23"
   },
   "dependencies": {
